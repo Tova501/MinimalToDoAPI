@@ -8,7 +8,7 @@ function App() {
   async function getTodos() {
     const todos = await service.getTasks();
     console.log(todos)
-    setTodos(todos);
+    setTodos(...this.todos, ...todos);
     console.log(this.todos)
   }
 
@@ -38,12 +38,12 @@ function App() {
       <header className="header">
         <h1>todos</h1>
         <form onSubmit={createTodo}>
-          <input className="new-todo" placeholder="Well, let's take on the day" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
+          <input className="new-todo" placeholder="Well, let's take on the day" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} /> 
         </form>
       </header>
       <section className="main" style={{ display: "block" }}>
         <ul className="todo-list">
-          {todos && todos.map(todo => {
+          { todos?.map(todo => {
             return (
               <li className={todo.isComplete ? "completed" : ""} key={todo.id}>
                 <div className="view">
