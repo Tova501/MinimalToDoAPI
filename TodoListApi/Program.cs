@@ -6,7 +6,14 @@ using TodoApi.Item;
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddDbContext<ToDoDbContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("ToDoDB"),
+    new MySqlServerVersion(new Version(8, 0, 2)),
+    mysqlOptions => 
+    {
+        mysqlOptions.EnableRetryOnFailure(maxRetryCount: 10);
+        mysqlOptions.CommandTimeout(500); // Set command timeout to 60 seconds
+    }));
 // Add CORS services
 builder.Services.AddCors(options =>
 {

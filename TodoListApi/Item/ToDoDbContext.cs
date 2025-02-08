@@ -18,8 +18,15 @@ public partial class ToDoDbContext : DbContext
 
     public virtual DbSet<Item> Items { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySql("server=localhost;port=3306;database=tododb;password=1234;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    if (!optionsBuilder.IsConfigured)
+    {
+        optionsBuilder.UseMySql(
+            "Server=bpsj0wg29cg5dtklnssy-mysql.services.clever-cloud.com;Port=3306;Database=bpsj0wg29cg5dtklnssy;User=uwkx4isqy2sspcyj;Password=swakR3M8hqvMSepkcMBi;",
+            Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.32-mysql"));
+    }
+}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -31,7 +38,7 @@ public partial class ToDoDbContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("items");
+            entity.ToTable("Items");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.IsComplete).HasColumnName("isComplete");
