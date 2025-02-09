@@ -39,15 +39,12 @@ var app = builder.Build();
 // Use the CORS policy
 app.UseCors(MyAllowSpecificOrigins);
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDo API");
-        c.RoutePrefix = string.Empty;
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDo API");
+    c.RoutePrefix = string.Empty;
+});
 
 app.MapGet("/items", async (ToDoDbContext db)=>{
     return Results.Ok(await db.Items.ToListAsync());
@@ -84,6 +81,8 @@ app.MapDelete("/items/{id}", async (ToDoDbContext db,int id) => {
     await db.SaveChangesAsync();
     return Results.Ok();
 });
+
+app.MapGet("/", ()=>"Todo server is running");
 
 app.Run();
 
