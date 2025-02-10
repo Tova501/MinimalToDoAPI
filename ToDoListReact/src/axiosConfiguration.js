@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let myAxios = axios.create({
-    baseURL: "https://localhost:5138",
+    baseURL: process.env.REACT_APP_API,
 })
 
 myAxios.interceptors.response.use(
@@ -13,4 +13,4 @@ myAxios.interceptors.response.use(
     }
   );
 
-export default myAxios
+export default myAxiosS
