@@ -8,12 +8,8 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("ToDoDB"),
-    new MySqlServerVersion(new Version(8, 0, 2)),
-    mysqlOptions => 
-    {
-        mysqlOptions.EnableRetryOnFailure(maxRetryCount: 10);
-        mysqlOptions.CommandTimeout(500); // Set command timeout to 60 seconds
-    }));
+    new MySqlServerVersion(new Version(8, 0, 2))
+));
 // Add CORS services
 builder.Services.AddCors(options =>
 {
@@ -25,19 +21,11 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Load the connection string from appsettings.json and inject the TodoContext into the builder
-builder.Services.AddDbContext<ToDoDbContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("ToDoDB"),
-    new MySqlServerVersion(new Version(8, 0, 2))));
-
 //Add the Swagger generator
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-// Use the CORS policy
-app.UseCors(MyAllowSpecificOrigins);
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
@@ -45,6 +33,9 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDo API");
     c.RoutePrefix = string.Empty;
 });
+
+// Use the CORS policy
+app.UseCors(MyAllowSpecificOrigins);
 
 app.MapGet("/tasks", async (ToDoDbContext db)=>{
     return Results.Ok(await db.Items.ToListAsync());
@@ -82,7 +73,6 @@ app.MapDelete("/tasks/{id}", async (ToDoDbContext db,int id) => {
     return Results.Ok();
 });
 
-app.MapGet("/", ()=>"Todo server is running");
-
+app.MapGet("/api", ()=>"Todo server is running");
+Console.WriteLine("db connectionstring" + builder.Configuration.GetConnectionString("ToDoDB"));
 app.Run();
-

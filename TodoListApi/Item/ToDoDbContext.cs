@@ -40,11 +40,10 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
             entity.ToTable("Items");
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.IsComplete).HasColumnName("isComplete");
+            entity.Property(e => e.Id);
+            entity.Property(e => e.IsComplete);
             entity.Property(e => e.Name)
-                .HasMaxLength(100)
-                .HasColumnName("name");
+                .HasMaxLength(100);
         });
 
         OnModelCreatingPartial(modelBuilder);
