@@ -46,18 +46,18 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty;
 });
 
-app.MapGet("/items", async (ToDoDbContext db)=>{
+app.MapGet("/tasks", async (ToDoDbContext db)=>{
     return Results.Ok(await db.Items.ToListAsync());
 });
-app.MapGet("/items/{id}", async (ToDoDbContext db, int id) => { return Results.Ok(await db.Items.FindAsync(id)); });
-app.MapPost("/items", async (ToDoDbContext db, Item item) =>
+app.MapGet("/tasks/{id}", async (ToDoDbContext db, int id) => { return Results.Ok(await db.Items.FindAsync(id)); });
+app.MapPost("/tasks", async (ToDoDbContext db, Item item) =>
 {
     db.Items.Add(item);  
     await db.SaveChangesAsync();
     return Results.Ok(item);
 });
 
-app.MapPut("/items/{id}", async (ToDoDbContext db, int id,  Item item) => {
+app.MapPut("/tasks/{id}", async (ToDoDbContext db, int id,  Item item) => {
     var existingItem = await db.Items.FindAsync(id);
     if (existingItem == null)
         return Results.NotFound();
@@ -73,7 +73,7 @@ app.MapPut("/items/{id}", async (ToDoDbContext db, int id,  Item item) => {
 });
 
 
-app.MapDelete("/items/{id}", async (ToDoDbContext db,int id) => {
+app.MapDelete("/tasks/{id}", async (ToDoDbContext db,int id) => {
     var existingItem = await db.Items.FindAsync(id);
     if(existingItem==null)
         return Results.NotFound();
