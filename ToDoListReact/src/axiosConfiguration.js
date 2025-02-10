@@ -13,4 +13,4 @@ myAxios.interceptors.response.use(
     }
   );
 
-export default myAxiosS
+export default myAxios
