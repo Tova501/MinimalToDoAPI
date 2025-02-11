@@ -931,63 +931,66 @@ html .clear-completed:active {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .header-section {
+}
+
+.header-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .header-title {
-    font-size: 28px;
+}
+
+.header-title {
+    font-size: 32px; /* Increased font size */
     color: #343a40;
-  }
-  
-  .input-field {
-    width: 100%;
+}
+
+.input-field {
+    width: calc(100% - 24px); /* Ensure input stays within container */
     padding: 12px;
     border: 1px solid #ced4da;
     border-radius: 5px;
     font-size: 16px;
-  }
-  
-  .main-section {
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.main-section {
     margin-top: 20px;
-  }
-  
-  .todo-list {
+}
+
+.todo-list {
     list-style: none;
     padding: 0;
-  }
-  
-  .todo-item {
+}
+
+.todo-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px;
     border-bottom: 1px solid #dee2e6;
-  }
-  
-  .todo-item.completed label {
+}
+
+.todo-item.completed label {
     text-decoration: line-through;
     color: #6c757d;
-  }
-  
-  .todo-view {
+}
+
+.todo-view {
     display: flex;
     align-items: center;
-  }
-  
-  .checkbox {
+}
+
+.checkbox {
     margin-right: 10px;
-  }
-  
-  .delete-button {
+    width: 20px; /* Increased size for better visibility */
+    height: 20px; /* Increased size for better visibility */
+}
+
+.delete-button {
     background: none;
     border: none;
     color: #dc3545;
     cursor: pointer;
-    font-size: 20px;
-  }
-  
+    font-size: 24px; /* Increased font size for the delete button */
+    padding: 5px; /* Added padding for better click area */
+}
