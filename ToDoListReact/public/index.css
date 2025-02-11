@@ -922,3 +922,72 @@ html .clear-completed:active {
         bottom: 10px;
     }
 }
+
+/* private css*/
+.todo-container {
+    background: #e9ecef;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-title {
+    font-size: 28px;
+    color: #343a40;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .main-section {
+    margin-top: 20px;
+  }
+  
+  .todo-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .todo-item.completed label {
+    text-decoration: line-through;
+    color: #6c757d;
+  }
+  
+  .todo-view {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox {
+    margin-right: 10px;
+  }
+  
+  .delete-button {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
