@@ -922,3 +922,71 @@ html .clear-completed:active {
         bottom: 10px;
     }
 }
+
+/* private css*/
+.todoapp {
+  background: #f5f5f5;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.new-todo {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.main {
+  margin-top: 20px;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.todo-list li.completed label {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.view {
+  display: flex;
+  align-items: center;
+}
+
+.toggle {
+  margin-right: 10px;
+}
+
+.destroy {
+  background: none;
+  border: none;
+  color: #ff5b5b;
+  cursor: pointer;
+  font-size: 20px;
+}
