@@ -33,30 +33,76 @@ function App() {
   }, []);
 
   return (
+  //   <section className="todoapp">
+  //     <header className="header">
+  //       <h1>todos</h1>
+  //       <form onSubmit={createTodo}>
+  //         <input className="new-todo" placeholder="Well, let's take on the day" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} /> 
+  //       </form>
+  //     </header>
+  //     <section className="main" style={{ display: "block" }}>
+  //       <ul className="todo-list">
+  //         {todos.map(todo => {
+  //           return (
+  //             <li className={todo.isComplete ? "completed" : ""} key={todo.id}>
+  //               <div className="view">
+  //                 <input className="toggle" type="checkbox" defaultChecked={todo.isComplete} onChange={(e) => updateCompleted(todo, e.target.checked)} />
+  //                 <label>{todo.name}</label>
+  //                 <button className="destroy" onClick={() => deleteTodo(todo.id)}></button>
+  //               </div>
+  //             </li>
+  //           );
+  //         })}
+  //       </ul>
+  //     </section>
+  //   </section >
+  // );
     <section className="todoapp">
       <header className="header">
         <h1>todos</h1>
         <form onSubmit={createTodo}>
-          <input className="new-todo" placeholder="Well, let's take on the day" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} /> 
+          <input 
+            className="new-todo" 
+            placeholder="Well, let's take on the day" 
+            value={newTodo} 
+            onChange={(e) => setNewTodo(e.target.value)} 
+          />
         </form>
       </header>
-      <section className="main" style={{ display: "block" }}>
-        <ul className="todo-list">
-          {todos.map(todo => {
-            return (
-              <li className={todo.isComplete ? "completed" : ""} key={todo.id}>
-                <div className="view">
-                  <input className="toggle" type="checkbox" defaultChecked={todo.isComplete} onChange={(e) => updateCompleted(todo, e.target.checked)} />
-                  <label>{todo.name}</label>
-                  <button className="destroy" onClick={() => deleteTodo(todo.id)}></button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+      <section className="main">
+        {todos.length > 0 ? (
+          <ul className="todo-list">
+            {todos.map(todo => (
+              <TodoItem 
+                key={todo.id} 
+                todo={todo} 
+                updateCompleted={updateCompleted} 
+                deleteTodo={deleteTodo} 
+              />
+            ))}
+          </ul>
+        ) : (
+          <p>No todos available</p>
+        )}
       </section>
-    </section >
+    </section>
   );
-}
+};
+
+const TodoItem = ({ todo, updateCompleted, deleteTodo }) => (
+  <li className={todo.isComplete ? "completed" : ""}>
+    <div className="view">
+      <input 
+        className="toggle" 
+        type="checkbox" 
+        checked={todo.isComplete} 
+        onChange={(e) => updateCompleted(todo, e.target.checked)} 
+      />
+      <label>{todo.name}</label>
+      <button className="destroy" onClick={() => deleteTodo(todo.id)}></button>
+    </div>
+  </li>
+);
+
 
 export default App;
