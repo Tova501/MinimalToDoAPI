@@ -16,7 +16,8 @@ export default {
   },
 
   setCompleted: async (id, isComplete) => {
-    const result = await myAxios.put(`/tasks/${id}`, { Id: id, Name: "", IsCompelte: isComplete });
+    const todos = await myAxios.get(`/tasks/${id}`);
+    const result = await myAxios.put(`/tasks/${id}`, { Id: id, Name: task.Name, IsCompelte: isComplete });
     return {};
   },
 
